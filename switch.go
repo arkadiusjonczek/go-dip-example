@@ -5,17 +5,24 @@ import (
 	"log"
 )
 
-type SwitchPortInterface interface {
+type Switchable interface {
 	On() error
 	Off() error
 }
 
-type Switch struct {
-	on   bool
-	port SwitchPortInterface
+type SwitchInterface interface {
+	On() error
+	Off() error
 }
 
-func NewSwitch(port SwitchPortInterface) *Switch {
+var _ SwitchInterface = (*Switch)(nil)
+
+type Switch struct {
+	on   bool
+	port Switchable
+}
+
+func NewSwitch(port Switchable) *Switch {
 	return &Switch{
 		on:   false,
 		port: port,

@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-var _ SwitchPortInterface = (*Lamp)(nil)
+var _ Switchable = (*Lamp)(nil)
 
 type Lamp struct {
 }
@@ -23,7 +23,7 @@ func (l *Lamp) Off() error {
 	return nil
 }
 
-var _ SwitchPortInterface = (*CoffeeMaschine)(nil)
+var _ Switchable = (*CoffeeMaschine)(nil)
 
 type CoffeeMaschine struct {
 }
